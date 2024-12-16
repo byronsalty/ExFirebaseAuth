@@ -116,7 +116,11 @@ defmodule ExFirebaseAuth.KeyStore do
     end)
   end
 
-  defp schedule_refresh(after_s \\ 300) do
-    Process.send_after(self(), :refresh, after_s * 1000)
+  defp schedule_refresh(after_s \\ nil) do
+    # Read refresh_interval from the config or use the default (300 seconds)
+    interval = after_s || Application.get_env(:ex_firebase_auth, :refresh_interval, 300)
+
+    Process.send_after(self(), :refresh, interval * 1000)
   end
+
 end
