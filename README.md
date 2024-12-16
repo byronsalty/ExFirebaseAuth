@@ -40,6 +40,14 @@ config :your_app, :ex_firebase_auth,
   issuer: "https://securetoken.google.com/project-123abc"
 ```
 
+Now you can configure your refresh interval with Google. 
+
+```elixir
+config :ex_firebase_auth,
+  issuer: "https://securetoken.google.com/project-123abc",
+  refresh_interval: 3500
+```
+
 Verifying a token
 
 ```elixir
